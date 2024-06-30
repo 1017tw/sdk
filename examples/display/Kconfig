@@ -1,0 +1,12 @@
+# source Kconfig of sdk components
+rsource "../../sdk/Kconfig"
+
+# add more config for you own project
+	choice
+		prompt "Select display example"
+		config USE_DISPLAY_DVPOUT
+			bool "DISPLAY_DVPOUT"
+
+		config USE_DISPLAY_I80
+			bool "DISPLAY_I80"					
+	endchoice

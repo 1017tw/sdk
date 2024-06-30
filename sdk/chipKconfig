@@ -1,0 +1,88 @@
+menu "Chip seclect"
+	config USE_FPGA
+		bool "Run on FPGA"
+		default n
+	choice
+		prompt "Chip Select"
+		config CHIP_AI1101A
+			bool "AI1101A, 48-PIN, 4MB DDR"
+		config CHIP_AI1102A
+			bool "AI1102A, 68-PIN, 4MB DDR"
+		config CHIP_AI1102B
+			bool "AI1102B, 68-PIN, 4MB+4MB DDR"
+		config CHIP_AI1102C
+			bool "AI1102C, 68-PIN, 8MB"
+		config CHIP_AI1103A
+			bool "AI1103A, 96-PIN, 4MB"
+		config CHIP_AI1103B
+			bool "AI1103B, 96-PIN, 4MB+4MB DDR"
+		config CHIP_AI1103C
+			bool "AI1103C, 96-PIN, 8MB"
+	endchoice
+endmenu
+
+# add more config for your own project
+menu "Boot options"
+	config BOOT_DELAY_SECS
+		int "Delay seconds during SPL boot"
+		default 0
+
+	choice
+		prompt "Execute mode"
+		config EXECUTE_ON_DDR
+		bool "Execute program on DDR memory"
+
+		config EXECUTE_ON_ROM
+			bool "Execute program on flash with XIP"
+	endchoice
+
+	if EXECUTE_ON_ROM
+		config XIP_BOOT_ADDR
+			hex "XIP Boot address: XIP baseaddr + partition offset"
+			default 0x30010000
+	endif
+endmenu
+
+
+
+menu "Memory map configure"
+    config SRAM_CODE_SIZE_KB
+	int "SRAM_CODE_SIZE_KB, critical code size in SRAM (KB)"
+	default 80
+
+    comment "DMA_MEM_SIZE_KB: max 1024KB, 4KB page aligned"
+    config DMA_MEM_SIZE_KB
+	int "DMA_MEM_SIZE_KB(4KB aligned)"
+	default 128
+
+    comment "DMA_MEM_SIZE_KB: max DMA_MEM_SIZE_KB, 4KB page aligned"
+    config DMA_HEAP_SIZE_KB
+	int "DMA_HEAP_SIZE_KB(4KB aligned)"
+	default 56
+
+	config FW_CODE_SIZE_KB
+		int "FW_CODE_SIZE_KB when execute on DDR"
+		depends on EXECUTE_ON_DDR
+		default 2048 if DEBUG
+		default 960 if DEBUG_WITH_OPT
+		default 800
+
+    comment "The memory block which is smaller than SMALL_MEM_SIZE_BYTE will be allocated from small memory pool"
+    config SMALL_MEM_SIZE_BYTE
+        int "SMALL_MEM_SIZE_BYTE"
+        default 1060
+    
+    config SMALL_MEM_POOL_SIZE_BYTE
+        int "SMALL_MEM_POOL_SIZE_BYTE"
+        default 413696
+
+    config SRAM_RELOCATE_CODE
+        bool "relocate critical code into SRAM"
+        default n
+
+    config XNN_PING_PONG_BUF
+        bool "Enable ping-pong buffer for XNN"
+        depends on CHIP_AI1102B || CHIP_AI1103B
+        default y
+endmenu
+

@@ -1,0 +1,6 @@
+.config.old
+dependencies_file
+minicom.cap
+obj
+bin
+.*.swp

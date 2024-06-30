@@ -1,0 +1,109 @@
+
+#
+# AIVA ai11xx SDK Kconfig
+#
+
+#
+# Build mode
+#
+# CONFIG_DEBUG is not set
+# CONFIG_DEBUG_WITH_OPT is not set
+CONFIG_RELEASE=y
+# CONFIG_RELEASE_WITH_NANOSPEC is not set
+# CONFIG_BUILD_PUBLIC_VERSION is not set
+# end of Build mode
+
+#
+# Chip seclect
+#
+# CONFIG_USE_FPGA is not set
+CONFIG_CHIP_AI1101A=y
+# CONFIG_CHIP_AI1102A is not set
+# CONFIG_CHIP_AI1102B is not set
+# CONFIG_CHIP_AI1102C is not set
+# CONFIG_CHIP_AI1103A is not set
+# CONFIG_CHIP_AI1103B is not set
+# CONFIG_CHIP_AI1103C is not set
+# end of Chip seclect
+
+#
+# Boot options
+#
+CONFIG_BOOT_DELAY_SECS=0
+CONFIG_EXECUTE_ON_DDR=y
+# CONFIG_EXECUTE_ON_ROM is not set
+# end of Boot options
+
+#
+# Memory map configure
+#
+CONFIG_SRAM_CODE_SIZE_KB=90
+
+#
+# DMA_MEM_SIZE_KB: max 1024KB, 4KB page aligned
+#
+CONFIG_DMA_MEM_SIZE_KB=128
+
+#
+# DMA_MEM_SIZE_KB: max DMA_MEM_SIZE_KB, 4KB page aligned
+#
+CONFIG_DMA_HEAP_SIZE_KB=56
+
+#
+# The memory block which is smaller than SMALL_MEM_SIZE_BYTE will be allocated from small memory pool
+#
+CONFIG_SMALL_MEM_SIZE_BYTE=1060
+CONFIG_SMALL_MEM_POOL_SIZE_BYTE=413696
+# CONFIG_SRAM_RELOCATE_CODE is not set
+# end of Memory map configure
+
+#
+# Log system configuration
+#
+CONFIG_LOG_ENABLE=y
+CONFIG_LOG_COLORS=y
+
+#
+# 0: no log, 1: error, 2: warning, 3: info, 4: debug, 5: verbose
+#
+CONFIG_LOG_LEVEL=4
+# end of Log system configuration
+
+#
+# SDK modules
+#
+CONFIG_USE_XNN=y
+CONFIG_USE_GUI=y
+# CONFIG_USE_LVGL is not set
+# CONFIG_USE_NAND_FLASH is not set
+CONFIG_USE_FS=y
+CONFIG_USE_USB2OTG=y
+# CONFIG_USE_IMU is not set
+# CONFIG_USE_LED is not set
+# CONFIG_USE_JPEG_DECODER is not set
+# CONFIG_USE_RTT is not set
+# CONFIG_USE_ADPCM is not set
+# CONFIG_USE_HELIX_MP3 is not set
+CONFIG_USE_GZIP=y
+CONFIG_USE_WRAP_AFFINE=y
+CONFIG_USE_ALIGN_HAND=y
+CONFIG_USE_LIBJPEG=y
+# CONFIG_USE_LIBJPEG_TURBO is not set
+# CONFIG_NO_LIBJPEG is not set
+# end of SDK modules
+
+#
+# Components device drivers (Internal)
+#
+
+#
+# USB gadget drivers
+#
+# CONFIG_UVC_ISOC_CAMERA is not set
+# CONFIG_UVC_UAC_ISOC is not set
+# CONFIG_UVC_BULK_UAC_ISOC is not set
+
+#
+# Videoin MIPI-CIS drivers
+#
+# end of Components device drivers (Internal)
