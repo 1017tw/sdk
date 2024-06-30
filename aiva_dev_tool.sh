@@ -11,6 +11,7 @@ echo Project: $PROJECT_NAME
 echo Project Image: $IMAGE_FILE
 echo ""
 
+
 setup_uart_port() {
     stty -F $DEV 460800
 }
